@@ -9,6 +9,7 @@ type ButtonProps = {
   icon?: React.ReactNode;
   variant: string;
   full?: boolean;
+  disabled?: boolean;
 };
 
 const Button = ({ type = 'button', link, title, icon, variant, full }: ButtonProps) => {

@@ -1,39 +1,11 @@
 'use client'
 import Button from '@/components/Button';
+import { packages } from '@/constants';
 import React, { useState } from 'react';
-
-const packages = {
-    Hideout: {
-        name: "Hideout Package",
-        description: "5 nights at Hide Out Lodge for a cozy, scenic experience.",
-        pricing: {
-            Kumasi: {
-                single: "GHC 3277.50",
-                double: "GHC 3105.00"
-            },
-            Accra: {
-                single: "GHC 2242.50",
-                double: "GHC 2070.00"
-            }
-        }
-    },
-    Luxury: {
-        name: "Luxury Package",
-        description: "Includes Landcruiser Drive to and from Takoradi. Accommodation: 5 nights at Busua Beach Resort. Activities: Includes everything with added luxury.",
-        pricing: {
-            Kumasi: {
-                single: "$396.75",
-                double: "$288.94"
-            },
-            Accra: {
-                single: "$375.18",
-                double: "$267.38"
-            }
-        }
-    }
-};
+import emailjs from "@emailjs/browser";
 
 export default function BookingForm() {
+    const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({
         fullName: '',
         phoneNumber: '',
@@ -57,19 +29,56 @@ export default function BookingForm() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        console.log('Form submitted:', formData);
-        // Here you would typically send the data to your server
+        setLoading(true);
+
+        const templateParams = {
+            from_name: formData.fullName,
+            to_name: 'Bonvas Tours',
+            from_phone: formData.phoneNumber,
+            from_email: formData.email,
+            to_email: 'info@bonvastours.com',
+            message: `Package Selected: ${formData.package},
+                      Package Price: ${formData.price},
+                      Source: ${formData.source}`
+        };
+
+        emailjs.send(
+            process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+            process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+            templateParams,
+            process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+        )
+            .then(() => {
+                alert("Thank you! Our team will contact you soon.");
+                setFormData({
+                    fullName: '',
+                    phoneNumber: '',
+                    email: '',
+                    departure: '',
+                    package: '',
+                    price: '',
+                    source: ''
+                });
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+                alert("Oops! Something went wrong. Please try again.");
+            })
+            .finally(() => {
+                setLoading(false);
+            });
     };
 
     return (
         <div className="min-h-screen flex justify-center items-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8 pt-32">
             <div className="max-w-3xl mx-auto">
                 <div className="px-4 py-5 sm:p-6">
-                    <h2 className="text-3xl font-bold text-center text-gray-900 mb-2">Orange December Book Form</h2>
+                    <h2 className="text-3xl font-bold text-center text-gray-900 mb-2">Orange December Booking Form</h2>
                     <p className="text-center text-gray-600 mb-8">Thank you for your interest in this package. Please complete the form below to book</p>
 
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                            {/* Full Name Field */}
                             <div>
                                 <label htmlFor="fullName" className="block text-sm font-medium text-gray-700">Full Name *</label>
                                 <input
@@ -82,6 +91,7 @@ export default function BookingForm() {
                                     onChange={handleInputChange}
                                 />
                             </div>
+                            {/* Phone Number Field */}
                             <div>
                                 <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700">Phone Number *</label>
                                 <input
@@ -94,6 +104,7 @@ export default function BookingForm() {
                                     onChange={handleInputChange}
                                 />
                             </div>
+                            {/* Email Field */}
                             <div>
                                 <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email *</label>
                                 <input
@@ -106,6 +117,7 @@ export default function BookingForm() {
                                     onChange={handleInputChange}
                                 />
                             </div>
+                            {/* Departure Location Field */}
                             <div>
                                 <label htmlFor="departure" className="block text-sm font-medium text-gray-700">Select Departure/Pickup Location *</label>
                                 <select
@@ -121,6 +133,7 @@ export default function BookingForm() {
                                     <option value="Accra">Accra</option>
                                 </select>
                             </div>
+                            {/* Package Field */}
                             {formData.departure && (
                                 <div>
                                     <label htmlFor="package" className="block text-sm font-medium text-gray-700">Select Package *</label>
@@ -139,6 +152,7 @@ export default function BookingForm() {
                                     </select>
                                 </div>
                             )}
+                            {/* Package Price Field */}
                             {formData.package && (
                                 <div>
                                     <label htmlFor="price" className="block text-sm font-medium text-gray-700">Select Package Price *</label>
@@ -156,6 +170,7 @@ export default function BookingForm() {
                                     </select>
                                 </div>
                             )}
+                            {/* Source Field */}
                             <div>
                                 <label htmlFor="source" className="block text-sm font-medium text-gray-700">Where Did you hear Orange December?</label>
                                 <input
@@ -168,17 +183,17 @@ export default function BookingForm() {
                                 />
                             </div>
                         </div>
-                        <div className="flexCenter">
+                        <div className="flex justify-center">
                             <Button
-                                type='submit'
-                                title="Book Now"
+                                type="submit"
+                                title={loading ? "Sending..." : "Book Now"}
                                 variant="btn_dark"
+                                disabled={loading}
                             />
                         </div>
                     </form>
                 </div>
             </div>
-
         </div>
     );
 }

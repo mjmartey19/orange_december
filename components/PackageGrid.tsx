@@ -40,14 +40,14 @@ export default function PackageGrid() {
                 <PackageCard
                     title="Hideout Package"
                     description={`5 nights at Hide Out Lodge for a cozy, scenic experience`}
-                    kumasiPrices={{ singleOccupant: "GHC 3277.50", doubleOccupant: "GHC 3105.00" }}
-                    accraPrices={{ singleOccupant: "GHC 2242.50", doubleOccupant: "GHC 2070.00" }}
+                    kumasiPrices={{ singleOccupant: "GHC 3,278S.00", doubleOccupant: "GHC 2,243.00" }}
+                    accraPrices={{ singleOccupant: "GHC 3,105.00", doubleOccupant: "GHC 2,070.00" }}
                 />
                 <PackageCard
                     title="Luxury Package"
                     description="Includes Landcruiser Drive to and from Takoradi. Accommodation: 5 nights at Busua Beach Resort. Activities: Includes everything with added luxury"
-                    kumasiPrices={{ singleOccupant: "$396.75", doubleOccupant: "$288.94" }}
-                    accraPrices={{ singleOccupant: "$375.18", doubleOccupant: "$267.38" }}
+                    kumasiPrices={{ singleOccupant: "GHC 6,348.00", doubleOccupant: "GHC 4,623.00" }}
+                    accraPrices={{ singleOccupant: "GHC 6,003.00", doubleOccupant: "GHC 4,278.00" }}
                 />
             </div>
         </div>
