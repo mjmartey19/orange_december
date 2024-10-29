@@ -1,6 +1,7 @@
 'use client'
+
 import Button from '@/components/Button';
-import { packages } from '@/constants';
+import { packages, sourceOptions } from '@/constants';
 import React, { useState } from 'react';
 import emailjs from "@emailjs/browser";
 
@@ -15,6 +16,8 @@ export default function BookingForm() {
         price: '',
         source: ''
     });
+
+   
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -36,7 +39,7 @@ export default function BookingForm() {
             to_name: 'Bonvas Tours',
             from_phone: formData.phoneNumber,
             from_email: formData.email,
-            to_email: 'info@bonvastours.com',
+            to_email: 'snm@bonvastours.com',
             message: `Package Selected: ${formData.package},
                       Package Price: ${formData.price},
                       Source: ${formData.source}`
@@ -172,15 +175,19 @@ export default function BookingForm() {
                             )}
                             {/* Source Field */}
                             <div>
-                                <label htmlFor="source" className="block text-sm font-medium text-gray-700">Where Did you hear Orange December?</label>
-                                <input
-                                    type="text"
+                                <label htmlFor="source" className="block text-sm font-medium text-gray-700">How did you hear about Orange December?</label>
+                                <select
                                     name="source"
                                     id="source"
                                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-orange-500 focus:border-orange-500"
                                     value={formData.source}
                                     onChange={handleInputChange}
-                                />
+                                >
+                                    <option value="">Select an option</option>
+                                    {sourceOptions.map(option => (
+                                        <option key={option.value} value={option.value}>{option.label}</option>
+                                    ))}
+                                </select>
                             </div>
                         </div>
                         <div className="flex justify-center">

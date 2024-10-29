@@ -1,4 +1,4 @@
-// components/HighlightCard.tsx
+
 import React from 'react';
 
 interface HighlightCardProps {

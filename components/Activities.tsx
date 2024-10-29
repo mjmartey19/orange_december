@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Button from './Button'
+import { activities } from '@/constants'
 
 
 interface ActivityCardProps {
@@ -17,13 +18,7 @@ const ActivityCard: React.FC<ActivityCardProps> = ({ title, imageSrc, className 
     </div>
 )
 
-const activities = [
-    { title: "Hiking", imageSrc: "/hiking.jpg" },
-    { title: "Swimming", imageSrc: "/swimming.jpg" },
-    { title: "Camping and Bonfire nights", imageSrc: "/camping.jpg" },
-    { title: "Canoe ride", imageSrc: "/canoe-ride.jpg" },
-    { title: "Game night with fellow travelers", imageSrc: "/game-night.jpg" },
-]
+
 
 export default function Activities() {
     return (

@@ -1,5 +1,5 @@
 
-export const TRIP = [
+export const trip = [
         {
             title: 'Pristine Beaches',
             description: 'Enjoy Busua Beach, Perfect For Swimming, Surfing, And Relaxing',
@@ -52,3 +52,44 @@ export const packages = {
         }
     }
 };
+
+export  const sourceOptions = [
+        { label: "Facebook", value: "Facebook" },
+        { label: "Instagram", value: "Instagram" },
+        { label: "Twitter", value: "Twitter" },
+        { label: "Friend", value: "Friend" },
+        { label: "Family", value: "Family" },
+        { label: "Website", value: "website" },
+        { label: "Other", value: "other" },
+    ];
+
+export const experiences = [
+    {
+        title: "Pristine Beaches",
+        description: "Enjoy Busua Beach, Perfect For Swimming, Surfing, And Relaxing",
+        imageSrc: "/beach.jpg"
+    },
+    {
+        title: "Historic Sites",
+        description: "Explore UNESCO-Listed Forts Like Fort Batenstein",
+        imageSrc: "/fort.jpg"
+    },
+    {
+        title: "Outdoor Adventures",
+        description: "Canoe Rides, Hiking, And Sunset Cruises Await You",
+        imageSrc: "/adventure.jpg"
+    },
+    {
+        title: "Cultural Carnival",
+        description: "Dance To Vibrant Drum Beats, Join The Parade, And Immerse In The Festive Energy Of Ghana's Largest Masquerade Street Carnival Celebration.",
+        imageSrc: "/carnival.jpg"
+    }
+]
+
+export const activities = [
+    { title: "Hiking", imageSrc: "/hiking.jpg" },
+    { title: "Swimming", imageSrc: "/swimming.jpg" },
+    { title: "Camping and Bonfire nights", imageSrc: "/camping.jpg" },
+    { title: "Canoe ride", imageSrc: "/canoe-ride.jpg" },
+    { title: "Game night with fellow travelers", imageSrc: "/game-night.jpg" },
+]

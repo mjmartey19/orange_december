@@ -1,5 +1,12 @@
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 
+const socialMedia = [
+  { Icon: FaFacebookF, href: '#', label: 'Facebook' },
+  { Icon: FaTwitter, href: '#', label: 'Twitter' },
+  { Icon: FaInstagram, href: '#', label: 'Instagram' },
+  { Icon: FaLinkedinIn, href: '#', label: 'LinkedIn' },
+]
+
 export default function Footer() {
   return (
     <footer className="bg-black text-white py-8 px-4">
@@ -9,12 +16,7 @@ export default function Footer() {
         <p className="mb-6">Call/WhatsApp: +233 261 671 686/+233 549 876 194</p>
 
         <div className="flex justify-center space-x-4 mb-6">
-          {[
-            { Icon: FaFacebookF, href: '#', label: 'Facebook' },
-            { Icon: FaTwitter, href: '#', label: 'Twitter' },
-            { Icon: FaInstagram, href: '#', label: 'Instagram' },
-            { Icon: FaLinkedinIn, href: '#', label: 'LinkedIn' },
-          ].map(({ Icon, href, label }) => (
+          {socialMedia.map(({ Icon, href, label }) => (
             <a
               key={label}
               href={href}
