@@ -17,7 +17,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({ title, description, ima
             objectFit="cover"
             className="transition-transform duration-300 hover:scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-6">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent flex flex-col justify-end p-6">
             <h2 className="text-white text-2xl font-bold mb-2">{title}</h2>
             <p className="text-white text-sm">{description}</p>
         </div>

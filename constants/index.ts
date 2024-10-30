@@ -87,9 +87,9 @@ export const experiences = [
 ]
 
 export const activities = [
-    { title: "Hiking", imageSrc: "/hiking.jpg" },
+    { title: "Hiking", imageSrc: "/adventure.jpg" },
     { title: "Swimming", imageSrc: "/swimming.jpg" },
-    { title: "Camping and Bonfire nights", imageSrc: "/camping.jpg" },
+    { title: "Camping and Bonfire nights", imageSrc: "/bonfire.jpg" },
     { title: "Canoe ride", imageSrc: "/canoe-ride.jpg" },
     { title: "Game night with fellow travelers", imageSrc: "/game-night.jpg" },
 ]

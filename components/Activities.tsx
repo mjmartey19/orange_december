@@ -12,7 +12,7 @@ interface ActivityCardProps {
 const ActivityCard: React.FC<ActivityCardProps> = ({ title, imageSrc, className = "" }) => (
     <div className={`relative overflow-hidden group ${className} rounded-xl`}>
         <Image src={imageSrc} alt={title} layout="fill" objectFit="cover" className="transition-transform duration-300 group-hover:scale-110" />
-        <div className="absolute inset-0 flex items-end p-6 bg-gradient-to-t from-black/60 to-transparent">
+        <div className="absolute inset-0 flex items-end p-6 bg-gradient-to-t from-black/100 to-transparent">
             <h3 className="text-xl font-semibold text-white">{title}</h3>
         </div>
     </div>

@@ -21,12 +21,12 @@ const Button = ({ type = 'button', link, title, icon, variant, full }: ButtonPro
   );
 
   return link ? (
-    <Link href={link} className={`flexCenter gap-3 rounded-full border ${variant} ${full && 'w-full'}`}>
+    <Link href={link} className={`flexCenter gap-3 rounded-full border ${variant} ${full && 'w-full'} hover:opacity-80`}>
       {buttonContent}
     </Link>
   ) : (
     <button
-      className={`flexCenter gap-3 rounded-full border ${variant} ${full && 'w-full'}`}
+      className={`flexCenter gap-3 rounded-full border ${variant} ${full && 'w-full'} hover:opacity-80`}
       type={type}
     >
       {buttonContent}

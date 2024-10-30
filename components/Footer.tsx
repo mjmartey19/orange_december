@@ -1,10 +1,9 @@
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 
 const socialMedia = [
-  { Icon: FaFacebookF, href: '#', label: 'Facebook' },
-  { Icon: FaTwitter, href: '#', label: 'Twitter' },
-  { Icon: FaInstagram, href: '#', label: 'Instagram' },
-  { Icon: FaLinkedinIn, href: '#', label: 'LinkedIn' },
+  { Icon: FaFacebookF, href: 'https://web.facebook.com/bonvastours', label: 'Facebook' },
+  { Icon: FaInstagram, href: 'https://www.instagram.com/bonvastours/', label: 'Instagram' },
+  { Icon: FaLinkedinIn, href: 'https://www.linkedin.com/company/bonvas-tours-limited/', label: 'LinkedIn' },
 ]
 
 export default function Footer() {
