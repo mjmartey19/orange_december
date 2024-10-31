@@ -17,7 +17,7 @@ export default function BookingForm() {
         source: ''
     });
 
-   
+
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -73,7 +73,7 @@ export default function BookingForm() {
     };
 
     return (
-        <div className="min-h-screen flex justify-center items-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8 pt-32">
+        <div className="min-h-screen flex justify-center items-center py-12 px-4 sm:px-6 lg:px-8 pt-32">
             <div className="max-w-3xl mx-auto">
                 <div className="px-4 py-5 sm:p-6">
                     <h2 className="text-3xl font-bold text-center text-gray-900 mb-2">Orange December Booking Form</h2>

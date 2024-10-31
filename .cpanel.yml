@@ -1,0 +1,10 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/bonvast9/acs.bonvastours.com
+    - /bin/cp -R app $DEPLOYPATH
+    - /bin/cp -R components $DEPLOYPATH
+    - /bin/cp -R constants $DEPLOYPATH
+    - /bin/cp -R public $DEPLOYPATH
+    - /bin/cp .env $DEPLOYPATH
+    - /bin/cp README.md $DEPLOYPATH
