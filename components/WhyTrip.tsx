@@ -12,7 +12,7 @@ const WhyTrip = () => {
           <Button
             link='/booking-form'
             title="Book Now"
-            variant="btn_dark"
+            variant="btn_orange"
           />
         </div>
 
