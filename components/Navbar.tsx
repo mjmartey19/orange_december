@@ -11,7 +11,7 @@ const Navbar = () => {
 
       <div className="md:flexCenter max-[400px]:w-40 flexCenter gap-3">
         <Image src="/call-icon.svg" alt="Call Icon" width={24} height={24} />
-        <h5 className="md:regular-18 text-[0.8rem]">+233 261 671 686/+233 549 876 194</h5>
+        <h5 className="md:regular-18 text-[0.8rem]">+233 261 671 686/+233 531 090 068</h5>
       </div>
     </div>
   )

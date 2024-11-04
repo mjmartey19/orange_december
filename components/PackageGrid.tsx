@@ -46,8 +46,8 @@ export default function PackageGrid() {
                 <PackageCard
                     title="Busua Beach Resort Package"
                     description="Includes Landcruiser Drive to and from Takoradi. Accommodation: 5 nights at Busua Beach Resort. Activities: Includes everything with added luxury"
-                    kumasiPrices={{ singleOccupant: "GHC 6,348.00", doubleOccupant: "GHC 4,623.00" }}
-                    accraPrices={{ singleOccupant: "GHC 6,003.00", doubleOccupant: "GHC 4,278.00" }}
+                    kumasiPrices={{ singleOccupant: "$ 397", doubleOccupant: "$ 289" }}
+                    accraPrices={{ singleOccupant: "$ 375", doubleOccupant: "$ 267" }}
                 />
             </div>
         </div>
