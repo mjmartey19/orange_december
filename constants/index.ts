@@ -42,12 +42,12 @@ export const packages = {
         description: "Includes Landcruiser Drive to and from Takoradi. Accommodation: 5 nights at Busua Beach Resort. Activities: Includes everything with added luxury.",
         pricing: {
             Kumasi: {
-                single: "GHC 6,348.00",
-                double: "GHC 4,623.00"
+                single: "$ 397.00",
+                double: "$ 289.00"
             },
             Accra: {
-                single: "GHC 6,003.00",
-                double: "GHC 4,278.00"
+                single: "$ 375.00",
+                double: "$ 267.00"
             }
         }
     }
