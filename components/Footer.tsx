@@ -29,9 +29,7 @@ export default function Footer() {
 
         <div className="text-sm">
           <p className="mb-2">
-            All Rights Reserved |
-            <a href="#" className="underline ml-1 hover:text-gray-300">Terms and Conditions</a> |
-            <a href="#" className="underline ml-1 hover:text-gray-300">Privacy Policy</a>
+            All Rights Reserved
           </p>
           <p>Copyright © 2024 Bonvas Tours</p>
         </div>
