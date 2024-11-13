@@ -37,7 +37,7 @@ export default function Activities() {
                         <Button
                             link='/booking-form'
                             title="Book Now"
-                            variant="btn_orange"
+                            variant="btn_dark"
                         />
                     </div>
                 </div>
