@@ -13,7 +13,7 @@ export default function BookNow() {
                     <Button
                         link="/booking-form"
                         title="Book Now"
-                        variant="btn_dark"
+                        variant="btn_orange"
                     />
                 </div>
             </div>

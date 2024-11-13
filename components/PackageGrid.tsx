@@ -21,12 +21,12 @@ const PackageCard: React.FC<{
         <p>{description}</p>
 
         <div>
-            <h3 className="font-semibold">For Kumasi Departure:</h3>
+            <h3 className="font-semibold">For Kumasi (Tech Junction) Departure:</h3>
             <PriceList {...kumasiPrices} />
         </div>
 
         <div>
-            <h3 className="font-semibold">For Accra Departure</h3>
+            <h3 className="font-semibold">For Accra (Obra Spot) Departure </h3>
             <PriceList {...accraPrices} />
         </div>
     </div>
@@ -40,7 +40,7 @@ export default function PackageGrid() {
                 <PackageCard
                     title="Hideout Package"
                     description={`5 nights at Hide Out Lodge for a cozy, scenic experience`}
-                    kumasiPrices={{ singleOccupant: "GHC 3,278S.00", doubleOccupant: "GHC 2,243.00" }}
+                    kumasiPrices={{ singleOccupant: "GHC 3,278.00", doubleOccupant: "GHC 2,243.00" }}
                     accraPrices={{ singleOccupant: "GHC 3,105.00", doubleOccupant: "GHC 2,070.00" }}
                 />
                 <PackageCard
