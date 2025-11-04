@@ -1,7 +1,7 @@
 'use client'
 
 import Button from '@/components/Button';
-import { packages, sourceOptions } from '@/constants';
+import { bookingPackages, sourceOptions } from '@/constants';
 import React, { useState } from 'react';
 import emailjs from "@emailjs/browser";
 
@@ -11,9 +11,10 @@ export default function BookingForm() {
         fullName: '',
         phoneNumber: '',
         email: '',
-        departure: '',
-        package: '',
-        price: '',
+        package: '', // stores package id from bookingPackages
+        price: '', // stores price label
+        departure: '', // only for local package
+        paymentOption: '100',
         source: ''
     });
 
@@ -23,53 +24,56 @@ export default function BookingForm() {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
 
-        if (name === 'departure') {
-            setFormData(prev => ({ ...prev, package: '', price: '' }));
-        } else if (name === 'package') {
-            setFormData(prev => ({ ...prev, price: '' }));
+        if (name === 'package') {
+            const found = bookingPackages.find(p => p.id === value)
+            setFormData(prev => ({ ...prev, price: found ? found.priceLabel : '', departure: '' }));
         }
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        setLoading(true);
-
+    async function sendEmails() {
         const templateParams = {
             from_name: formData.fullName,
             to_name: 'Bonvas Tours',
             from_phone: formData.phoneNumber,
             from_email: formData.email,
-            to_email: 'snm@bonvastours.com',
-            message: `Package Selected: ${formData.package},
-                      Package Price: ${formData.price},
-                      Source: ${formData.source}`
+            to_email: 'sm@bonvastours.com',
+            message: `Package Selected: ${formData.package},\n                      Package Price: ${formData.price},\n                      Pickup: ${formData.departure || 'N/A'},\n                      Payment Option: ${formData.paymentOption}%,\n                      Source: ${formData.source}`
         };
 
-        emailjs.send(
+        await emailjs.send(
             process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
             process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
             templateParams,
             process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
         )
-            .then(() => {
-                alert("Thank you! Our team will contact you soon.");
-                setFormData({
-                    fullName: '',
-                    phoneNumber: '',
-                    email: '',
-                    departure: '',
-                    package: '',
-                    price: '',
-                    source: ''
-                });
+
+        await emailjs.send(
+            process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+            process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+            { ...templateParams, to_email: formData.email },
+            process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+        )
+    }
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setLoading(true);
+
+        try {
+            await sendEmails()
+            alert('Thanks! Your details have been received. You will now be redirected to Paystack to complete payment.')
+            if (typeof window !== 'undefined') {
+                window.open('https://paystack.shop/pay/bonvastours', '_blank')
+            }
+            setFormData({
+                fullName: '', phoneNumber: '', email: '', departure: '', package: '', price: '', paymentOption: '100', source: ''
             })
-            .catch((error) => {
-                console.error("Error:", error);
-                alert("Oops! Something went wrong. Please try again.");
-            })
-            .finally(() => {
-                setLoading(false);
-            });
+        } catch (error) {
+            console.error(error)
+            alert('We could not send your booking details. Please try again.')
+        } finally {
+            setLoading(false)
+        }
     };
 
     return (
@@ -120,56 +124,63 @@ export default function BookingForm() {
                                     onChange={handleInputChange}
                                 />
                             </div>
-                            {/* Departure Location Field */}
+                            {/* Package Field */}
                             <div>
-                                <label htmlFor="departure" className="block text-sm font-medium text-gray-700">Select Departure/Pickup Location *</label>
+                                <label htmlFor="package" className="block text-sm font-medium text-gray-700">Select Package *</label>
                                 <select
-                                    name="departure"
-                                    id="departure"
+                                    name="package"
+                                    id="package"
                                     required
                                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-orange-500 focus:border-orange-500"
-                                    value={formData.departure}
+                                    value={formData.package}
                                     onChange={handleInputChange}
                                 >
-                                    <option value="">Select Pickup Location</option>
-                                    <option value="Kumasi">Kumasi</option>
-                                    <option value="Accra">Accra</option>
+                                    <option value="">Select Package</option>
+                                    {bookingPackages.map(p => (
+                                        <option key={p.id} value={p.id}>{p.label}</option>
+                                    ))}
                                 </select>
                             </div>
-                            {/* Package Field */}
-                            {formData.departure && (
+                            {/* Price Display (auto) */}
+                            {formData.package && (
                                 <div>
-                                    <label htmlFor="package" className="block text-sm font-medium text-gray-700">Select Package *</label>
+                                    <label className="block text-sm font-medium text-gray-700">Price</label>
+                                    <div className="mt-1 border border-gray-300 rounded-md py-2 px-3 bg-gray-10">{formData.price || '—'}</div>
+                                </div>
+                            )}
+                            {/* Departure Location Field - only for Local */}
+                            {formData.package.startsWith('local') && (
+                                <div>
+                                    <label htmlFor="departure" className="block text-sm font-medium text-gray-700">Select Departure/Pickup Location *</label>
                                     <select
-                                        name="package"
-                                        id="package"
+                                        name="departure"
+                                        id="departure"
                                         required
                                         className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-orange-500 focus:border-orange-500"
-                                        value={formData.package}
+                                        value={formData.departure}
                                         onChange={handleInputChange}
                                     >
-                                        <option value="">Select Package</option>
-                                        {Object.entries(packages).map(([key, value]) => (
-                                            <option key={key} value={key}>{value.name}</option>
-                                        ))}
+                                        <option value="">Select Pickup Location</option>
+                                        <option value="Kumasi">Kumasi</option>
+                                        <option value="Accra">Accra</option>
                                     </select>
                                 </div>
                             )}
-                            {/* Package Price Field */}
-                            {formData.package && (
+                            {/* Payment Option */}
+                            {formData.price && (
                                 <div>
-                                    <label htmlFor="price" className="block text-sm font-medium text-gray-700">Select Package Price *</label>
+                                    <label htmlFor="paymentOption" className="block text-sm font-medium text-gray-700">Payment Option *</label>
                                     <select
-                                        name="price"
-                                        id="price"
+                                        name="paymentOption"
+                                        id="paymentOption"
                                         required
                                         className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-orange-500 focus:border-orange-500"
-                                        value={formData.price}
+                                        value={formData.paymentOption}
                                         onChange={handleInputChange}
                                     >
-                                        <option value="">Select Package Price</option>
-                                        <option value="single">Single Occupant: {packages[formData.package as keyof typeof packages].pricing[formData.departure as keyof typeof packages.Hideout.pricing].single}</option>
-                                        <option value="double">Double Occupant: {packages[formData.package as keyof typeof packages].pricing[formData.departure as keyof typeof packages.Hideout.pricing].double}</option>
+                                        <option value="30">Initial Deposit (30%)</option>
+                                        <option value="50">Half Payment (50%)</option>
+                                        <option value="100">Full Payment (100%)</option>
                                     </select>
                                 </div>
                             )}
@@ -193,7 +204,7 @@ export default function BookingForm() {
                         <div className="flex justify-center">
                             <Button
                                 type="submit"
-                                title={loading ? "Sending..." : "Book Now"}
+                                title={loading ? "Submitting..." : "Submit & Pay"}
                                 variant="btn_dark"
                                 disabled={loading}
                             />
@@ -204,3 +215,4 @@ export default function BookingForm() {
         </div>
     );
 }
+

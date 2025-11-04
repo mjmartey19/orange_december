@@ -12,7 +12,11 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="text-xl font-semibold mb-4">Contact us for inquiries or bookings:</h2>
         <p className="mb-2">Email: info@bonvastours.com</p>
-        <p className="mb-6">Call/WhatsApp: +233 261 671 686/+233 531 090 068</p>
+        <p className="mb-6">Call/WhatsApp: +233 261 671 686/+233 53 103 5235</p>
+
+        <p className="mb-6">
+          Visit our main site: <a href="https://www.bonvastours.com" target="_blank" className="underline">bonvastours.com</a>
+        </p>
 
         <div className="flex justify-center space-x-4 mb-6">
           {socialMedia.map(({ Icon, href, label }) => (
