@@ -9,6 +9,7 @@ import HighlightTrip from "@/components/HightlightTrip";
 import JoinUs from "@/components/JoinUs";
 import Packages from "@/components/Packages";
 import WhyTrip from "@/components/WhyTrip";
+import PartnerLogos from "@/components/PartnerLogos";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
       <HighlightTrip />
       <Activities />
       <Packages />
+      <PartnerLogos />
       <FAQs />
       <BookNow />
       <WhatsAppButton />
