@@ -42,7 +42,7 @@ export default function DiasporaPackages() {
                     {diasporaPackages.inclusions.map(h => (<li key={h}>{h}</li>))}
                 </ul>
             </div>
-            <p className="text-xs text-gray-500 mb-4 "><span className="font-bold">NB: Exchange rate:</span> $1 = GHS {exchangeRate}</p>
+            <p className="text-xs text-red-500 mb-4 "><span className="font-bold">NB: Exchange rate:</span> $1 = GHS {exchangeRate}</p>
 
             <div className="pt-2">
                 <Link href="/booking-form" className="btn_orange inline-block mr-3 rounded-full">Book Now / Reserve Your Spot</Link>
