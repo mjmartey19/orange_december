@@ -4,7 +4,7 @@ import { diasporaPackages, exchangeRate } from '@/constants'
 function USDandGHS({ amountUSD }: { amountUSD: number }) {
     const ghs = Math.round(amountUSD * exchangeRate)
     return (
-        <div className="text-lg font-bold">${amountUSD.toLocaleString()} (GHS {ghs.toLocaleString()})</div>
+        <div className="text-lg font-bold">${amountUSD.toLocaleString()}</div>
     )
 }
 
@@ -15,7 +15,7 @@ export default function DiasporaPackages() {
             <p className="text-gray-700 mb-4">{diasporaPackages.description}</p>
             <p className="text-sm text-gray-600 mb-4">Program Dates: {diasporaPackages.programDates}</p>
 
-            <div className="space-y-4 mb-4">
+            <div className="space-y-4 mb-2">
                 {diasporaPackages.durations.map((d) => (
                     <div key={d.label} className="bg-[#FFF4E0] rounded-xl p-4 space-y-2">
                         <div className="font-semibold">{d.name}</div>
@@ -42,6 +42,7 @@ export default function DiasporaPackages() {
                     {diasporaPackages.inclusions.map(h => (<li key={h}>{h}</li>))}
                 </ul>
             </div>
+            <p className="text-xs text-gray-500 mb-4 "><span className="font-bold">NB: Exchange rate:</span> $1 = GHS {exchangeRate}</p>
 
             <div className="pt-2">
                 <Link href="/booking-form" className="btn_orange inline-block mr-3 rounded-full">Book Now / Reserve Your Spot</Link>

@@ -8,7 +8,7 @@ const Hero = () => {
       <div className="relative z-20 flex flex-1 flex-col xl:w-1/2 text-white">
         <h1 className="bold-52 md:bold-64">Orange December</h1>
         <p className="regular-32 mt-6 xl:max-w-[560px]">
-          A coastal Bliss and Cultural Carnival in Takoradi
+          A coastal Bliss and Cultural Carnival in Ghana
         </p>
 
         <div className="flex flex-col w-full gap-3 sm:flex-row pt-5">
