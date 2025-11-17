@@ -15,7 +15,8 @@ export default function BookingForm() {
         price: '', // stores price label
         departure: '', // only for local package
         paymentOption: '100',
-        source: ''
+        source: '',
+        occupancy: ''
     });
 
 
@@ -37,7 +38,7 @@ export default function BookingForm() {
             from_phone: formData.phoneNumber,
             from_email: formData.email,
             to_email: 'sm@bonvastours.com',
-            message: `Package Selected: ${formData.package},\n                      Package Price: ${formData.price},\n                      Pickup: ${formData.departure || 'N/A'},\n                      Payment Option: ${formData.paymentOption}%,\n                      Source: ${formData.source}`
+            message: `Package Selected: ${formData.package},\n                      Package Price: ${formData.price},\n                      Pickup: ${formData.departure || 'N/A'},\n                      Payment Option: ${formData.paymentOption}%,\n                      Occupancy: ${formData.occupancy || 'N/A'},\n                      Source: ${formData.source}`
         };
 
         await emailjs.send(
@@ -66,7 +67,7 @@ export default function BookingForm() {
                 window.open('https://paystack.shop/pay/bonvastours', '_blank')
             }
             setFormData({
-                fullName: '', phoneNumber: '', email: '', departure: '', package: '', price: '', paymentOption: '100', source: ''
+                fullName: '', phoneNumber: '', email: '', departure: '', package: '', price: '', paymentOption: '100', source: '', occupancy: ''
             })
         } catch (error) {
             console.error(error)
@@ -163,6 +164,25 @@ export default function BookingForm() {
                                         <option value="">Select Pickup Location</option>
                                         <option value="Kumasi">Kumasi</option>
                                         <option value="Accra">Accra</option>
+                                    </select>
+                                </div>
+                            )}
+                            {/* Occupancy Option */}
+                            {formData.package && (
+                                <div>
+                                    <label htmlFor="occupancy" className="block text-sm font-medium text-gray-700">Room Type *</label>
+                                    <select
+                                        name="occupancy"
+                                        id="occupancy"
+                                        required
+                                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-orange-500 focus:border-orange-500"
+                                        value={formData.occupancy}
+                                        onChange={handleInputChange}
+                                    >
+                                        <option value="">Select an option</option>
+                                        <option value="family">Family</option>
+                                        <option value="single">Single</option>
+                                        <option value="double">Double</option>
                                     </select>
                                 </div>
                             )}
